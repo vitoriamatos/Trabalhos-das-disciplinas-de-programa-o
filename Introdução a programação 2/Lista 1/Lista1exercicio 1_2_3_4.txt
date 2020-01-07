@@ -1,0 +1,86 @@
+
+	public static void vetorScanner(double [] vetor){ //parâmetro
+	        int i;
+	        Scanner input = new Scanner(System.in);
+	        String [] mes = {"Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Julh", "Ago", "Set", "Out", "Nove", "Deze"};
+	        
+	        for(i = 0; i < vetor.length; i++){
+	            System.out.print("Informe o valor correspondente a cada mês de "+ mes[i]+ ": ");
+	            vetor[i] = input.nextDouble();
+	            
+	           
+	        }        
+	        
+	    }
+	    
+	    public static void vetorCalculo (double [] ganhos, double [] gastos, double [] lucros){
+	        int i;
+	        Scanner input = new Scanner(System.in);
+	        
+	        for (i = 0; i < lucros.length; i++ ){
+	            lucros[i] = ganhos[i] - gastos[i];
+	        }
+	    }
+	    
+	    public static void exibeVetor (double [] vetor){
+	    	String [] mes = {"Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Julh", "Ago", "Set", "Out", "Nove", "Deze"};
+	    	int i;
+	        
+	        for (i = 0; i < vetor.length; i++){
+	            System.out.println("Estes são os lucros correspondentes ao mê de "+ mes[i]+ ": "+ vetor [i]);
+	          
+	        }
+	    }
+	    
+	    
+	    public static void calculo(double[] ganhos, double [] gastos, double [] lucros) {
+	    double contador =0;
+	    double contador1 =0;
+	    double contador2 =0;
+	    double media= 0;
+	    
+	    	
+	    	//ganhos
+	    	 for (int i = 0; i < 12; i++ ){
+		            contador += ganhos[i];
+		            contador1 += gastos[i];
+		            contador2 += lucros [i];
+		            media = contador2/12;
+	    	 }
+	    	 System.out.println("O total de ganhos do ano foi de :"+ contador);
+	    	 System.out.println("O total de gastos do ano foi de :"+ contador1);
+	    	 System.out.println("O total de lucros do ano foi de :"+ contador2+ "Com uma média de "+ media+ " por mês");
+	    } 
+	  
+	    	
+	    	
+	    	
+	    
+	   
+	    public static void main(String[] args) {
+	        //tipoComponente [] nomeVariável; (variável de referência)
+	        //nomeVariável = new tipoComponente[qntComponentes] (criação do vetor)
+	        //OU tipoComponente [] nomeVariável = new tipoComponente [qntComponentes] (outra forma de sintaxe)
+	        //ex: int [] numeros = new int [10]
+	    	
+	        
+	        
+	        
+	        double [] vetGanhos = new double[3];
+	        double [] vetGastos = new double[3];
+	        double [] vetLucros = new double[3];
+	        
+	        System.out.println("Primeiro informe os ganhos da empresa.");
+	        vetorScanner(vetGanhos);
+	        
+	        System.out.println("Agora, informe os gastos da empresa. ");
+	        vetorScanner(vetGastos);
+	        vetorCalculo(vetGanhos, vetGastos, vetLucros);
+	        exibeVetor(vetLucros);
+	        
+	        calculo(vetGanhos, vetGastos, vetLucros);
+	        
+	        //exibeVetor /chamada do procedimento/ (nome do vetor) /o parâmetro passado é o nome da variável que contém o end do vetor
+	    }
+	    
+	}

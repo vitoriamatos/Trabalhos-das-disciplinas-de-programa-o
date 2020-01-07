@@ -1,0 +1,45 @@
+
+package ed1.t2;
+
+ class NodeP {
+    
+   
+    private NodeP prev;
+    private NodeP next;
+    private NodeS inicio;
+    private Character info;
+    
+    
+    NodeP(Character info){
+        this.info = info;
+    }
+    
+    Character getInfo(){
+        return this.info;
+    }
+    
+    void setPrev(NodeP prev){
+        this.prev = prev;
+    }
+    
+    NodeP getPrev(){
+        return this.prev;
+    }
+    
+    void setNext(NodeP next){
+        this.next = next;
+    }
+    
+    NodeP getNext(){
+        return this.next;
+    }
+    
+    void setInicio(NodeS inicio){
+        this.inicio = inicio;
+    }
+    
+    NodeS getInicio(){
+        return this.inicio;
+    }
+    
+}

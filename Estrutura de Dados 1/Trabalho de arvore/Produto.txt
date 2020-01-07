@@ -1,0 +1,79 @@
+package ed1.pacote1;
+
+import ed1.pacote1.Tree;
+
+public class Produto implements Comparable <Produto> {
+    
+    
+    private String codigo;
+    private String descrição;
+    private String fornecedor;
+    private double preço;
+    private int estoque;
+    
+    
+    
+    public Produto(String value){
+        this.codigo = value;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getDescrição() {
+        return descrição;
+    }
+
+    public void setDescrição(String descrição) {
+        this.descrição = descrição;
+    }
+
+    public String getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(String fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
+    public double getPreço() {
+        return preço;
+    }
+
+    public void setPreço(double preço) {
+        this.preço = preço;
+    }
+
+    public int getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" + "codigo=" + codigo + ", descrição=" + descrição + ", fornecedor=" + fornecedor + ", preço=" + preço + ", estoque=" + estoque + '}';
+    }
+
+    @Override
+    public int compareTo(Produto t) {
+        return this.codigo.compareTo(t.codigo);
+    }
+    
+
+    
+
+
+    
+    
+    
+    
+    
+}

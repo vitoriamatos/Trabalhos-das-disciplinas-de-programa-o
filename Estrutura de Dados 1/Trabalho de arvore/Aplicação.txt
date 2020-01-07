@@ -1,0 +1,71 @@
+package ed1.pacote1;
+
+import java.util.Scanner;
+
+public class aplicação {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        Produto p;
+        String codigo;
+        Cadastro cad = new Cadastro();
+        int op;
+        do {
+            System.out.println("Menu"
+                    + "\n1-Cadastrar"
+                    + "\n2-Exibir Todos os produtos"
+                    + "\n3-Procurar um produto"
+                    + "\n4-Alterar Preço"
+                    + "\n5-Alterar Estoque"
+                    + "\n6-Remover"
+                    + "\n0-Sair");
+
+            op = sc.nextInt();
+
+            switch (op) {
+
+                case 1:
+
+                    System.out.println("Informe o código do produto que deseja cadastrar:");
+                    codigo = sc.next();
+
+                    cad.cadastrar(codigo);
+                    break;
+                case 2:
+                    cad.exibir();
+                    break;
+                case 3:
+
+                    System.out.println("Informe o código do produto que deseja procurar:");
+                    codigo = sc.next();
+                    cad.buscarProduto(codigo);
+                    break;
+
+                case 4:
+                    System.out.println("Informe o código do produto");
+                    codigo = sc.next();
+                    cad.editarPreço(codigo);
+                    break;
+
+                case 5:
+                    System.out.println("Informe o código do produto");
+                    codigo = sc.next();
+                    cad.estoque(codigo);
+                    break;
+
+                case 6:
+                    System.out.println("Informe o código do produto");
+                    codigo = sc.next();
+                    cad.remover(codigo);
+                    break;
+                case 0:
+                    System.out.println("FINALIZADO");
+
+            }
+
+        } while (op != 3);
+
+    }
+
+}

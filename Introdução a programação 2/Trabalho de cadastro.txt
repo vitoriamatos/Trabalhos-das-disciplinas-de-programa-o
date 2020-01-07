@@ -1,0 +1,166 @@
+public class cpf {
+
+	public static void main(String[] args) {
+
+		int[] n = new int[10];
+
+		Scanner sc = new Scanner(System.in);
+		String cpf;
+		int tam;
+		do {
+			System.out.println("Digite os 11 números do seu CPF. Use apenas os números: ");
+			cpf = sc.next();
+			tam = cpf.length();
+		} while (verifica(cpf, tam) == true);
+
+		// cpf formatado
+
+		if (d1(cpf) == true || d2(cpf) == true) {
+			System.out.println("O CPF " + formatCPF(cpf) + " é Válido");
+		} else {
+			System.out.println("CPF " + formatCPF(cpf) + " é Inválido");
+		}
+
+	}
+
+	public static String formatCPF(String CPF) {
+		return (CPF.substring(0, 3) + "." + CPF.substring(3, 6) + "." + CPF.substring(6, 9) + "-"
+				+ CPF.substring(9, 11));
+	}
+
+	public static boolean verifica(String cpf, int tam) {
+		boolean espaço, digitos, espacos, simbolos, letras, resp = false;
+		int t = tam;
+
+		if (cpf.equals("00000000000") || cpf.equals("11111111111") || cpf.equals("22222222222")
+				|| cpf.equals("33333333333") || cpf.equals("44444444444") || cpf.equals("55555555555")
+				|| cpf.equals("66666666666") || cpf.equals("77777777777") || cpf.equals("88888888888")
+				|| cpf.equals("99999999999") || (cpf.length() != 11))
+			return true;
+
+		for (int i = 0; i < tam; i++) {
+
+			if (espaço = Character.isSpaceChar(cpf.charAt(i)) == true) {
+				System.out.println("Não são permitidos espaços.");
+				resp = true;
+				break;
+			} else if (letras = Character.isLetter(cpf.charAt(i)) == true) {
+				System.out.println("Não são permitidos letras.");
+				resp = true;
+				break;
+			} else if (digitos = Character.isDigit(cpf.charAt(i)) == true) {
+				resp = false;
+			}else if (cpf.charAt(i)<0) {
+				System.out.println("Não são permitidos números negativos.");
+				resp = true;
+				break;
+				
+			} else {
+				System.out.println("Não são permitidos Simbolos.");
+				// return true;
+				resp = true;
+				break;
+			}
+
+		}
+		if (tam < 11) {
+			resp = true;
+			System.out.println("O CPF deve conter 11 digitos.");
+		}
+		return resp;
+
+	}
+
+	public static boolean d1(String cpf) {
+
+		int numero, soma = 0, div, res = 0;
+		int[] mult = new int[9];
+		int[] valorInt = new int[cpf.length()];
+		int[] vetD1 = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+
+		// Tansforma a String em um vetor de inteiros
+		for (int i = 0; i < valorInt.length; i++) {
+			valorInt[i] = Integer.parseInt(cpf.substring(i, i + 1));
+		}
+		// Efetua a multiplicação pelos fatores
+		for (int j = 0; j < 9; j++) {
+			mult[j] = vetD1[j] * valorInt[j];
+
+		}
+		// Faz a soma
+		for (int s = 0; s < 9; s++) {
+			soma = mult[s] + soma;
+
+		}
+		// Encontra o digito 1
+
+		div = soma % 11;
+
+		if (soma == 0 || soma == 1) {
+			res = 0;
+		} else {
+			res = Math.abs(div - 11);
+
+		}
+
+		// condição para ser verdade
+		int digito1 = 0;
+		for (int v = 0; v < 9; v++) {
+			digito1 = valorInt[9];
+
+		}
+		if (digito1 == res) {
+
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	public static boolean d2(String cpf) {
+
+		int numero, soma = 0, div = 0, res = 0;
+		int[] mult = new int[10];
+		int[] valorInt = new int[cpf.length()];
+		int[] vetD2 = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+
+		// Tansforma a String em um vetor de inteiros
+		for (int i = 0; i < valorInt.length; i++) {
+			valorInt[i] = Integer.parseInt(cpf.substring(i, i + 1));
+		}
+		// Efetua a multiplicação pelos fatores
+		for (int j = 0; j < 10; j++) {
+			mult[j] = vetD2[j] * valorInt[j];
+
+		}
+		// Faz a soma
+		for (int s = 0; s < 10; s++) {
+			soma = mult[s] + soma;
+
+		}
+		// Encontra o digito 2
+
+		if (soma == 0 || soma == 1) {
+			res = 0;
+		} else {
+			res = Math.abs(div - 11);
+
+		}
+
+		// condição para ser verdade
+		int digito1 = 0;
+		for (int v = 0; v < 10; v++) {
+			digito1 = valorInt[10];
+
+		}
+		if (digito1 == res) {
+
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+}

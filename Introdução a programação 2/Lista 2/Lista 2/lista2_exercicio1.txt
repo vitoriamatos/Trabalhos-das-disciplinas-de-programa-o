@@ -1,0 +1,93 @@
+public class rascunho {
+	
+public static void main (String [] args) {
+		
+		Scanner sc = new Scanner (System.in);
+		int voto;
+		int [] vet = new int[6];
+	do {
+		System.out.println("----------------------------------");
+		System.out.println("Digite 0 pra votar em branco");
+		System.out.println("Digite 1 pra votar em João");
+		System.out.println("Digite 2 pra votar em Maria");
+		System.out.println("Digite 3 pra votar em Pedro");
+		System.out.println("Digite 4 pra votar em Luís");
+		System.out.println("Digite 9 pra encerrar a votação");
+		System.out.println("Digite qualquer número, diferente dos citados no menu para anular o voto");
+		System.out.println("----------------------------------");
+		System.out.println("Digite seu voto: ");
+		voto = sc.nextInt();
+	
+		// ifs 
+		
+		if (voto == 0) {
+			vet[0]++;
+			
+		}else if(voto ==1) {
+			vet[1]++;
+			
+		}else if (voto ==2) {
+			vet[2]++;
+		}else if(voto ==3) {
+			vet[3]++;
+		}else if (voto ==4) {
+			vet[4]++;
+		}else if (voto !=0 && voto !=1 && voto !=2 && voto !=3 && voto !=4) {
+			vet[5]++;	
+		
+		}
+	
+	}while (voto !=9);
+	
+	// imprimir resultados
+	 	System.out.println("-------------------------------------------------------------");
+		System.out.println("O mais votado foi o candidato "+maisVot(vet));
+		perc(vet);
+}// fim main 
+
+	
+	public static int maisVot(int [] vet) {
+		int maior =0;
+		for (int i = 1;i< vet.length; i++) {
+			if (vet[i]> vet[maior]) {
+				maior = i;
+			}
+		}return maior;
+		
+	
+}
+	
+	public static int soma(int[] vet) {
+		int cont=0;
+		for (int i = 1;i< vet.length; i++) {
+			cont += vet[i];
+		}return cont;
+}
+	
+	public static void perc(int[] vet) {
+		
+		double joao =vet[1], maria =vet[2], pedro =vet[3], luis=vet[4], branco =vet[0], nulo =vet[5];
+		
+
+			branco= (branco/soma(vet))*100;
+			System.out.println("Votos em branco: "+ branco+ "%");
+			joao = (joao/soma(vet))*100;
+			System.out.println("Votos em João: "+ joao+ "%");
+			maria = (maria/soma(vet));
+			System.out.println("Votos em Maria: "+ maria+ "%");
+			pedro = (pedro/soma(vet))*100;
+			System.out.println("Votos em Pedro: "+ pedro+ "%");
+			luis = (luis/soma(vet))*100;
+			System.out.println("Votos em Luís: "+ luis+ "%");
+			nulo = (nulo/soma(vet))*100;
+			System.out.println("Votos nulo: "+ nulo+ "%");
+			System.out.println(vet[0]);
+			
+	
+		
+		
+	}
+	
+	
+
+}

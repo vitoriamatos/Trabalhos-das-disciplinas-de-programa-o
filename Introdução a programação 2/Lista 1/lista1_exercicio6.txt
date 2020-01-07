@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class vetNum {
+
+	
+	
+	public static void preValor(double[] num ) {
+		Scanner sc = new Scanner (System.in);
+		for (int i=1; i<= num.length; i++) {
+
+			System.out.print("Digite o "+ i+"° número:" );
+			num[i]=sc.nextDouble();
+			
+		}
+		
+		
+	}
+		
+	public static double calculaDif (double[] vet) {
+		
+	double maiorDif=0, dif;
+	
+	for(int i=0; i<vet.length-1; i++) {
+		
+		dif= vet[i]- vet[i+1];
+		dif= Math.abs(dif);
+		if (dif> maiorDif) {
+			maiorDif=dif;
+		}
+	}return maiorDif;
+	
+	}
+		
+		
+
+	
+	public static void main(String[] args) {
+       
+        double [] vetNum = new double[10];
+       
+       calculaDif(vetNum);  
+        
+	}
+	
+	
+}
+
+	
+	
+	
+	
+	
+

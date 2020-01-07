@@ -1,0 +1,191 @@
+import java.util.Scanner;
+
+public class controle {
+	
+	
+	
+	public static void main (String [] args) {
+		
+		Scanner sc = new Scanner (System.in);
+		//vetores
+		
+		int [] vetCodigo = new int [4];
+		int [] vetQtd = new int [4];
+		double [] vetPreço = new double[4];
+		
+	
+	    // Cadastrando produtos		
+		System.out.println("----------------------------");
+		System.out.println("Cadastrando produtos");	
+		for(int i=1; i<=2; i++) {
+		System.out.println("----------------------------");		
+		System.out.println("Informe os códigos do "+i+"º produto:");
+		vetCodigo[i]=sc.nextInt();
+		System.out.println("Informe os preços desse mesmo produto");
+		vetPreço[i]=sc.nextDouble();
+		System.out.println("Informe a quantidade desse produto disponivel no estoque ");
+		vetQtd[i]=sc.nextInt();
+		}
+		
+	int num;
+	do {
+		System.out.println("----------------------------");
+		System.out.println("Menu: ");
+		System.out.println("1- Venda de produto");
+		System.out.println("2- Consulta de estoque");
+		System.out.println("3- Atualização de estoque");
+		System.out.println("4- Atualização de preço");
+		System.out.println("5- Encerrar programa");
+		System.out.println("----------------------------");
+		System.out.println("Informe o valor: ");
+		num = sc.nextInt();
+		
+		switch (num) {
+		
+		case 1:
+		
+			System.out.println("Qual o codigo do produto: ");
+			int codigo = sc.nextInt();
+			
+			System.out.println("Qual a qtd  que você deseja comprar do produto: ");
+			int qtd = sc.nextInt();
+			
+			venda(vetCodigo, vetPreço, vetQtd, codigo, qtd);
+			break;
+		case 2: 
+			
+			System.out.println("Qual o codigo do produto: ");
+			codigo = sc.nextInt();
+			consulta (vetCodigo, vetPreço, vetQtd, codigo);
+			break;
+		case 3:
+			
+			System.out.println("Qual o codigo do produto: ");
+			codigo = sc.nextInt();
+			
+			System.out.println("Qual a qtd do produto: ");
+			qtd = sc.nextInt();
+			
+			atualizaQtd(vetCodigo, vetQtd, codigo, qtd);
+			break;
+		case 4:
+			
+			System.out.println("Qual o codigo do produto: ");
+			codigo = sc.nextInt();
+			
+			System.out.println("Qual o preço do produto: ");
+			double preço = sc.nextInt();
+			
+			atualizaPreço(vetCodigo, vetPreço, codigo, preço);
+		
+			break;
+		case 5:
+			break;
+			
+		default:
+			
+			System.out.println("Opção invalida!");
+		}
+		
+		}while(num !=5);
+		
+	
+	
+	
+	}
+	
+	
+	
+	
+	public static void venda (int [] vetCodigo, double []vetPreço, int[] vetQtd, int codigo, int qtd) {
+		
+		// verifica o codigo
+		if (codigo == verifica (vetCodigo, codigo)) {
+			for (int i=1; i<2; i++) {
+				i=codigo; 		
+			}//fim do for
+			if( qtd<= vetQtd[codigo]) {// quantidade disponivel
+				//int venda = vetQtd[codigo] - qtd;// diminui do estoque
+				double gasto = vetPreço[codigo]*qtd;// informa o preço
+					vetQtd[codigo]= vetQtd[codigo]-qtd;// diminui do estoque
+					System.out.println("Pedido atendido. Valor total da compra foi de "+ gasto);
+						if (vetQtd[codigo]==0) {// if a parte 
+						System.out.println("Estoque zerado, favor entrar em contato com o fornecedor do produto.");
+						}
+			}else {// else do 2 if
+			System.out.println("Não temos estoque suficiente para essa mercadória. Consulte o estoque");
+			}
+			} else {
+				System.out.println("Código inexistente");
+			
+	}
+		}
+
+	public static void consulta (int [] vetCodigo, double []vetPreço, int [] vetQtd, int codigo) {
+		
+		if(verifica (vetCodigo, codigo)== codigo) {
+			
+			for (int i=1; i<2; i++) {
+				i=codigo;
+			}//fim do for
+				System.out.println("Quantidade"+vetQtd[codigo]);
+				System.out.println("Preço:"+ vetPreço[codigo]);
+		}else {
+			System.out.println("Código inexistente");
+		}
+		
+	}
+	
+	
+	public static void atualizaQtd (int [] vetCodigo, int [] vetQtd, int codigo, int qtd) {
+		
+		
+			if(verifica (vetCodigo, codigo)== codigo) {
+			
+				for (int i=1; i<2; i++) {
+					i=codigo;
+				}//fim do for
+				
+				vetQtd[codigo] = vetQtd[codigo]+qtd;
+			}else {
+				System.out.println("Código inexistente.");
+			}
+				
+	}
+	
+	
+	
+	public static void atualizaPreço (int [] vetCodigo, double [] vetPreço, int codigo, double preço) {
+		
+		
+		if(verifica (vetCodigo, codigo)== codigo) {
+		
+			for (int i=1; i<2; i++) {
+				i=codigo;
+			}//fim do for
+			
+			vetPreço[codigo] = preço;
+		}else {
+			System.out.println("Código inexistente.");
+		}
+			
+}
+	
+	public static int verifica (int [ ] vetCodigo, int num) {
+		
+		
+		if (num== 0) { //vetor vazio
+			return -1;
+			
+		}else {
+			for(int i=0; i<vetCodigo.length; i++) {
+				if(vetCodigo[i]==num) {
+					return i;// retorna  a posição
+				}
+			}return -1;// não existe 
+		}
+		
+		
+	}
+
+}

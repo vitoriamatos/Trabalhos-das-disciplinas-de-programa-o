@@ -1,0 +1,65 @@
+
+package ed1.t2;
+
+public class Contato {
+    
+    
+   
+    private String nome;
+    private ListaS telefone; //início da lista de telefone
+    private ListaS email; //início da lista de email
+    
+    public Contato(String nome){
+        this.nome = nome;
+        this.telefone = new ListaS();
+        this.email = new ListaS();
+    }
+    
+    public String getNome(){
+        return this.nome;
+    }
+    
+    public void setTelefone(String telefone){
+        this.telefone.inserirFinal(telefone);
+    }
+        
+    public void getTelefone(){
+        this.telefone.mostarInformações();
+    }
+    
+    public void editarTelefone(String telefone){
+        this.telefone.editar(telefone);
+    }
+    
+    public void excluirTelefone(String telefone){
+        this.telefone.remover(telefone);
+    }
+    
+    public void setEmail(String email){
+        this.email.inserirFinal(email);
+    }
+    
+    public void getEmail(){
+        this.email.mostarInformações();
+    }
+    
+    public void editarEmail(String email){
+        this.email.editar(email);
+    }
+    
+    public void excluirEmail(String email){
+        this.email.remover(email);
+    }
+    
+    public void exibirLista(){
+        System.out.println("Telefones: ");
+        this.telefone.mostarInformações();
+        System.out.println("Emails: ");
+        this.email.mostarInformações();
+    }
+    
+    
+    
+}
+    
+

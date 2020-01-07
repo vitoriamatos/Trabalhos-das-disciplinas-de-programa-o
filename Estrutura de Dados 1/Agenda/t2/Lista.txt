@@ -1,0 +1,116 @@
+
+package ed1.t2;
+
+import java.util.Scanner;
+
+
+public class ListaS{ // Lista secundária 
+    private NodeC first;
+    private NodeC last;
+    private int qtd;
+    
+    
+    public boolean isEmpty(){
+        if(this.qtd == 0)
+            return true;
+        else
+            return false;
+    }  public NodeC buscarInfo(String info){
+        if(this.isEmpty())
+            return null;
+        else{
+            NodeC aux = this.first;
+            while(aux != null){
+                if(aux.getInfo().equalsIgnoreCase(info))
+                    return aux;
+                aux = aux.getNext();
+            }
+            return null;
+        }
+    }
+    public void inserirFinal(String info){
+        NodeC novoC, auxC;
+        if(this.isEmpty()){
+            novoC = new NodeC(info);
+            this.first = novoC;
+            this.last = novoC;
+            this.qtd++;
+        }else{
+            auxC = buscarInfo(info);
+            if(auxC == null){
+                novoC = new NodeC(info);
+                this.last.setNext(novoC);
+                novoC.setPrev(this.last);
+                this.last = novoC;
+                this.qtd++;
+            }else{
+                System.out.println("Já cadastrado!");
+            }
+        }
+    }
+  
+    
+    
+    
+    public void mostarInformações(){ 
+        if(this.isEmpty())
+            System.out.println("Lista vazia!");
+        else{
+            NodeC aux = this.first;
+            while(aux != null){
+                System.out.println(aux.getInfo());
+                aux = aux.getNext();
+            }
+        }
+    }
+    
+    
+    public void remover(String info){
+        if(this.isEmpty())
+            System.out.println("Lista vazia!");
+        else{
+            NodeC aux = buscarInfo(info);
+            if(aux == null)
+                System.out.println("Não encontrado!");
+            else{
+                if(aux == this.first){
+                    if(this.qtd == 1){
+                        this.first = null;
+                        this.last = null;
+                        this.qtd--;
+                    }else{
+                        this.first = this.first.getNext();
+                        this.first.setPrev(null);
+                        this.qtd--;
+                    }
+                }else if(aux == this.last){
+                    this.last = this.last.getPrev();
+                    this.last.setNext(null);
+                    this.qtd--;
+                }else{
+                    aux.getPrev().setNext(aux.getNext());
+                    aux.getNext().setPrev(aux.getPrev());
+                    this.qtd--;
+                }
+            }
+        }
+    }
+    
+    public void editar(String info){
+        if(this.isEmpty())
+            System.out.println("A lista está vazia");
+        else{
+            NodeC aux = buscarInfo(info);
+            Scanner sc = new Scanner(System.in);
+            String novo;
+            if(aux == null)
+                System.out.println("Não encontrado!");
+            else{
+                System.out.println("Informe o novo: ");
+                novo = sc.nextLine();
+                aux.setInfo(novo.toLowerCase());
+            }
+        }
+    }
+    
+}

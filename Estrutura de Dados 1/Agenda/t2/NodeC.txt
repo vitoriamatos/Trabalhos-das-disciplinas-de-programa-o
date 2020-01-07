@@ -1,0 +1,46 @@
+
+package ed1.t2;
+
+
+public class NodeC {
+    
+   private NodeC prev;
+   private NodeC next;
+   private String info;
+    
+    
+   NodeC(String info){
+       
+       this.info = info;
+       
+   }
+
+    public NodeC getPrev() {
+        return prev;
+    }
+
+    public void setPrev(NodeC prev) {
+        this.prev = prev;
+    }
+
+    public NodeC getNext() {
+        return next;
+    }
+
+    public void setNext(NodeC next) {
+        this.next = next;
+    }
+
+    public String getInfo() {
+        return info;
+        
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+    
+   
+   
+   
+}

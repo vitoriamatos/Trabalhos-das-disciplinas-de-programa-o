@@ -1,0 +1,121 @@
+package ed1.pacote1;
+
+import java.util.Scanner;
+import ed1.pacote1.Produto;
+
+public class Cadastro {
+
+    private Tree<Produto> arv;
+
+    public Cadastro() {
+        arv = new Tree();
+    }
+
+    public void cadastrar(String value) {
+        Produto p;
+        String codigo, descrição, fornecedor;
+        double preço;
+        int estoque;
+        Scanner sc = new Scanner(System.in);
+
+        p = new Produto(value);
+
+        System.out.println("Informe a descrição do produto");
+        descrição = sc.next();
+        sc.nextLine();
+        p.setDescrição(descrição);
+
+        System.out.println("Informe o fornecedor do produto");
+        fornecedor = sc.next();
+        sc.nextLine();
+        p.setFornecedor(fornecedor);
+
+        System.out.println("Informe o preço do produto");
+        preço = sc.nextDouble();
+        sc.nextLine();
+        p.setPreço(preço);
+
+        System.out.println("Informe o estoque do produto");
+        estoque = sc.nextInt();
+        sc.nextLine();
+        p.setEstoque(estoque);
+
+        arv.insert(p);
+
+    }
+
+    public void exibir() {
+
+        arv.emOrdem();
+
+    }
+
+    public Produto buscar(String value) {
+
+        Produto p = new Produto(value);
+
+        return arv.find(p);
+
+    }
+
+    public void buscarProduto(String value) {
+
+        if (buscar(value) == null) {
+            System.out.println("Nenhum produto cadastrado!");
+        } else {
+            System.out.println(buscar(value).toString());
+
+        }
+
+    }
+
+    public void editarPreço(String value) {
+        Scanner sc = new Scanner(System.in);
+        double preço;
+        Produto busca = buscar(value);
+        if (busca == null) {
+            System.out.println("Nenhum produto cadastrado!");
+        } else {
+            System.out.println("Informe o novo preço:");
+            preço = sc.nextDouble();
+            busca.setPreço(preço);
+            System.out.println("Preço alterado!");
+            System.out.println(busca.toString());
+
+        }
+    }
+
+    public void estoque(String value) {
+        Scanner sc = new Scanner(System.in);
+        int estoque;
+        Produto busca = buscar(value);
+        if (busca == null) {
+            System.out.println("Nenhum produto cadastrado!");
+        } else {
+            System.out.println("Informe o novo preço:");
+            estoque = sc.nextInt();
+            busca.setEstoque(estoque);
+
+            System.out.println("Preço alterado!");
+            System.out.println(busca.toString());
+
+        }
+
+    }
+
+    public void remover(String value) {
+
+        Scanner sc = new Scanner(System.in);
+        double preço;
+        Produto busca = buscar(value);
+        if (busca == null) {
+            System.out.println("Nenhum produto cadastrado!");
+        } else {
+            Produto p = new Produto(value);
+            arv.remove(p);
+            System.out.println("Removido");
+        }
+
+    }
+
+}

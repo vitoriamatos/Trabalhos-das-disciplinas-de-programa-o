@@ -1,0 +1,66 @@
+package ed1.t1;
+
+import ed1.t1.Aplicação;
+import ed1.t2.Contato;
+import ed1.t2.Lista;
+import java.util.Scanner;
+
+public class Aplicação {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String nome;
+        char letra;
+        int op;
+        Lista l = new Lista();
+        
+        do{
+            System.out.println("Menu: "
+                    + "\n 1- Cadastrar novo contato"
+                    + "\n 2- Remover contato "
+                    + "\n 3- Exibir contato "
+                    + "\n 4- Editar contato "
+                    + "\n 5- Exibir todos os contatos "
+                    + "\n 6- Exibir todos os contatos iniciados por uma letra "
+                    + "\n 0- Sair");
+            op = in.nextInt(); in.nextLine();
+            
+            switch (op){
+                case 1:
+                    System.out.println("Nome: ");
+                    nome = in.nextLine();
+                    l.inserirOrdenado(nome.toUpperCase());
+                    break;
+                case 2:
+                    System.out.println("Nome: ");
+                    nome = in.nextLine();
+                    l.removerContato(nome.toUpperCase());
+                    break;
+                case 3:
+                    System.out.println("Nome: ");
+                    nome = in.nextLine();
+                    l.exibirContato(nome.toUpperCase());
+                    break;
+                case 4:
+                    System.out.println("Nome: ");
+                    nome = in.nextLine();
+                    l.editarContato(nome.toUpperCase());
+                    break;
+                case 5:
+                    l.listarContatos();
+                    break;
+                case 6:
+                    System.out.println("Nome:");
+                    letra = in.nextLine().charAt(0);
+                    l.listarContatosLetra(Character.toTitleCase(letra));
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+            }
+        }while(op != 0);
+        
+        
+    }
+    
+}

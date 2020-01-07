@@ -1,0 +1,39 @@
+package ed1.t2;
+import ed1.t2.Contato;
+
+
+class NodeS{ 
+    private NodeS prev;
+    private NodeS next;
+    private Contato info;
+    
+    
+    NodeS(Contato info){
+        this.info = info;
+    }
+    
+    void setInfo(Contato info){
+        this.info = info;
+    }
+    
+    Contato getInfo(){
+        return this.info;
+    }
+    
+    void setPrev(NodeS prev){
+        this.prev = prev;
+    }
+    
+    NodeS getPrev(){
+        return this.prev;
+    }
+    
+    void setNext(NodeS next){
+        this.next = next;
+    }
+    
+    NodeS getNext(){
+        return this.next;
+    }
+    
+}

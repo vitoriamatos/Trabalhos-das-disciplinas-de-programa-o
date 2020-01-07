@@ -1,0 +1,86 @@
+package ed1.pacote1;
+
+public class Tree<T extends Comparable<T>> {
+
+    private Node<T> root;
+
+    public boolean isEmpty() {
+
+        return this.root == null;
+
+    }
+
+    public T find(T value) {
+        if (this.isEmpty()) {
+            return null;
+        } else {
+            return root.findNode(value);
+        }
+    }
+
+    public void insert(T value) {
+        if (root == null) {
+            root = new Node(value);
+        } else {
+            root.insertNode(value);
+        }
+    }
+
+    public void emOrdem() {
+        if (root == null) {
+            System.out.println("Árvore vazia");
+        } else {
+            percorrerEmOrdem(root);
+        }
+    }
+
+    private void percorrerEmOrdem(Node<T> r) {
+        if (r != null) {
+            percorrerEmOrdem(r.getLeft());
+            System.out.println(r.getInfo());
+            percorrerEmOrdem(r.getRight());
+        }
+    }
+
+    public void remove(T value) {
+        if (root == null) {
+            System.out.println("Árvore vazia!");
+        } else {
+            root = remove(root, value);
+        }
+    }
+
+    private Node<T> remove(Node<T> r, T value) {
+       
+
+        if (r == null) {
+            System.out.println("Elemento não encontrado!");
+        } else if (value.compareTo(r.getInfo()) == 0) {
+            Node<T> pai, filho;
+            if (r.getLeft() == null && r.getRight() == null) { // Não tem filhos
+                r = null;
+            } else if (r.getLeft() == null) { // Não tem filho a esquerda
+                r = r.getRight();
+            } else if (r.getRight() == null) { // Não tem filho a direita
+                r = r.getLeft();
+            } else { // Tem ambos os filhos
+                pai = r;
+                filho = pai.getLeft();
+                while (filho.getRight() != null) {
+                    pai = filho;
+                    filho = filho.getRight();
+                }
+                pai.setRight(filho.getLeft());
+                r.setInfo(filho.getInfo());
+             
+            }
+
+        } else if (value.compareTo(r.getInfo()) < 0) {
+            r.setLeft(remove(r.getLeft(), value));
+        } else {
+            r.setRight(remove(r.getRight(), value));
+        }
+        return r;
+    }
+
+}

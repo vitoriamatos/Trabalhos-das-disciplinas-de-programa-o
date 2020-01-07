@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+public class numeros {
+	
+	public static void preValor(int[] num ) {
+		Scanner sc = new Scanner (System.in);
+		for (int i=1; i<= num.length; i++) {
+
+			System.out.print("Digite o "+ i+"° número:" );
+			num[i]=sc.nextInt();
+			
+		}
+		
+		
+	}
+		
+	public static int maiorNum(int [] num) {
+		
+		int cont =0;
+		
+		for (int i=1; i< num.length; i++) {
+			if (num[i] > cont) {
+				cont = i;
+			}
+		}return cont;
+	}
+		
+		
+		public static int menorNum(int [] num) {
+			
+			int cont =0;
+			
+			for (int i=1; i< num.length; i++) {
+				if (num[i] < cont) {
+					cont = i;
+				}
+			}return cont;
+			
+			
+		}		
+		
+
+	
+	public static void main(String[] args) {
+       
+        int [] vetNum = new int[10];
+       
+        preValor(vetNum);
+        
+        maiorNum(vetNum);
+        
+         
+        
+	}
+	
+	
+}
+
+	
+
+
